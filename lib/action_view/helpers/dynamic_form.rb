@@ -2,6 +2,7 @@ require 'action_view/helpers'
 require 'active_support/i18n'
 require 'active_support/core_ext/enumerable'
 require 'active_support/core_ext/object/blank'
+require 'htmlentities'
 
 module ActionView
   module Helpers
@@ -221,8 +222,10 @@ module ActionView
 
             message = options.include?(:message) ? options[:message] : locale.t(:body)
 
+            coder = HTMLEntities.new
             error_messages = objects.sum do |object|
               object.errors.full_messages.map do |msg|
+                msg = coder.decode(msg.gsub('&amp;', '&'))
                 content_tag(:li, msg)
               end
             end.join.html_safe
