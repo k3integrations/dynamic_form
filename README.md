@@ -55,3 +55,5 @@ or as a plugin by running this command:
 ---
 
 Copyright (c) 2010 David Heinemeier Hansson, released under the MIT license
+
+note: This is needed in netAdventist we've sourced it here so that we have controll over its availability.
